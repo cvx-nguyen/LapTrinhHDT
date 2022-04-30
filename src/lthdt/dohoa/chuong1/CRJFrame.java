@@ -143,9 +143,12 @@ public class CRJFrame extends javax.swing.JFrame {
                   Integer.parseInt(txtUpper_y.getText()),
                   Integer.parseInt(txtLower_x.getText()),
                   Integer.parseInt(txtLower_y.getText()));
-        String result = "Hình chữ nhật có diện tích: " + hcn.calcArea();
-        result += "; chu vi: " + hcn.calcPerimeter();
-        txtKetQua.append(result);
+//        //Cách 1
+//        String result = "Hình chữ nhật có diện tích: " + hcn.calcArea();
+//        result += "; chu vi: " + hcn.calcPerimeter();
+//        txtKetQua.append(result);
+          //Cách 2
+          txtKetQua.append(hcn.toString());
     }//GEN-LAST:event_btnTinhActionPerformed
 
     /**
