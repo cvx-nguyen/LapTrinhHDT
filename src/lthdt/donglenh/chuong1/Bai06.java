@@ -24,25 +24,30 @@ public class Bai06 {
         System.out.println("Ho ten: " + person.getHoten() + 
                 "; gioi tinh: " + person.getGioitinh() + 
                 "; ngay sinh: " + df.format(person.getNgaysinh()));
+        System.out.println("");
         
         Student sinhvien = new Student();
         sinhvien.setHoten("Trinh Hoai A");
         sinhvien.setGioitinh(1);
         sinhvien.setNgaysinh(df.parse("01-01-2001"));
         sinhvien.setTruonghoc("Dai hoc Hue");
-        System.out.println("Ho ten: " + sinhvien.getHoten() + 
+        System.out.println("Sinh vien");
+        System.out.println("   Ho ten: " + sinhvien.getHoten() + 
                 "; gioi tinh: " + sinhvien.getGioitinh() +
                 "; ngay sinh: " + sinhvien.getNgaysinh() +
                 "; truong hoc: " +  sinhvien.getTruonghoc());
+        System.out.println("   Tien thue: " + sinhvien.calcTax(1200));
         
         Worker congnhan = new Worker();
         congnhan.setHoten("Trinh Hoai B");
         congnhan.setGioitinh(0);
         congnhan.setNgaysinh(df.parse("01-02-2000"));
         congnhan.setCongty("IBM");
-        System.out.println("Ho ten: " + congnhan.getHoten() + 
+        System.out.println("Cong nhan");
+        System.out.println("   Ho ten: " + congnhan.getHoten() + 
                            "; gioi tinh: " + congnhan.getGioitinh() + 
                            "; ngay sinh: " + congnhan.getNgaysinh() + 
                            "; cong ty: " + congnhan.getCongty());
+        System.out.println("   Tien thue: " + congnhan.calcTax(2000));
     }
 }

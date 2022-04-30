@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author HOAI NGUYEN
  */
-public class Student extends Person{
+public class Student extends Person implements TaxInterface{
     private String truonghoc;
 
     public Student() {
@@ -27,6 +27,14 @@ public class Student extends Person{
     public void setTruonghoc(String truonghoc) {
         this.truonghoc = truonghoc;
     }
+
+    @Override
+    public double calcTax(double income) {
+        double tax;
+        tax = 0.01 * income;
+        return tax;
+    }
+    
     
     
 }
