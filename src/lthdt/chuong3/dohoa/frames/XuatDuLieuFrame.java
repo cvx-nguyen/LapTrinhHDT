@@ -13,6 +13,7 @@ import java.util.Random;
  */
 public class XuatDuLieuFrame extends javax.swing.JInternalFrame {
 
+    int[] a;
     /**
      * Creates new form XuatDuLieuFrame
      */
@@ -31,6 +32,7 @@ public class XuatDuLieuFrame extends javax.swing.JInternalFrame {
 
         pnPanel = new javax.swing.JPanel();
         btnVe = new javax.swing.JButton();
+        btnSapXep = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -45,7 +47,7 @@ public class XuatDuLieuFrame extends javax.swing.JInternalFrame {
         );
         pnPanelLayout.setVerticalGroup(
             pnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 357, Short.MAX_VALUE)
+            .addGap(0, 361, Short.MAX_VALUE)
         );
 
         btnVe.setText("Vẽ mảng 1 chiều ra màn hình");
@@ -55,24 +57,38 @@ public class XuatDuLieuFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        btnSapXep.setText("Sắp xếp mảng 1 chiều");
+        btnSapXep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSapXepActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 6, Short.MAX_VALUE)
+                        .addComponent(btnVe, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pnPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnVe, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnSapXep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(pnPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnVe)
-                .addGap(11, 11, 11))
+                .addGap(15, 15, 15)
+                .addComponent(btnSapXep)
+                .addContainerGap())
         );
 
         pack();
@@ -85,7 +101,7 @@ public class XuatDuLieuFrame extends javax.swing.JInternalFrame {
         int maxY = pnPanel.getHeight();
         int step = 5;
         int n = maxX/step;
-        int[] a = new int[n];
+        a = new int[n];
         Random rnd = new Random();
         for ( int i = 0; i < n; i++){
             a[i] = rnd.nextInt(maxY);
@@ -100,8 +116,38 @@ public class XuatDuLieuFrame extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnVeActionPerformed
 
+    private void btnSapXepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSapXepActionPerformed
+        // TODO add your handling code here:
+        Graphics2D gr = (Graphics2D) pnPanel.getGraphics();
+       int maxX = pnPanel.getWidth();
+       int maxY = pnPanel.getHeight();
+       int step = 5;
+       int n = maxX/step;
+       int beginX = 0; int beginX2 = 0;
+       for (int i = 0; i < n - 1; i++){
+           for (int j = i + 1; j < n; j++){
+               if(a[i] > a[j]){
+                   int temp = a[i];
+                   //Xoa hinh a[i] cu
+                   gr.clearRect(beginX, maxY - a[i], step, a[i]);
+                   //Ve hinh a[i] moi
+                   a[i] = a[j];
+                   gr.drawRect(beginX, maxY - a[i], step, a[i]);
+                   //Xoa hinh a[j] cu
+                   beginX2 = j * step;
+                   gr.clearRect(beginX2, maxY - a[j], step, a[j]);
+                   //Ve hinh a[j] moi
+                   a[j] = temp;
+                   gr.drawRect(beginX2, maxY - a[j], step, a[j]);
+               }
+           }
+           beginX += step;
+       }
+    }//GEN-LAST:event_btnSapXepActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSapXep;
     private javax.swing.JButton btnVe;
     private javax.swing.JPanel pnPanel;
     // End of variables declaration//GEN-END:variables
