@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class Worker extends Person implements TaxInterface{
     private String congty;
-
+  
     public Worker() {
     }
 
