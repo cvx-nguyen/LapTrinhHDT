@@ -4,6 +4,10 @@
  */
 package lthdt.chuong5.dohoa;
 
+import java.io.File;
+import javax.swing.tree.DefaultMutableTreeNode;
+import lthdt.chuong5.logic.FileAndDrectoryOperations;
+import lthdt.chuong5.logic.FileTreeModel;
 import lthdt.chuong5.logic.TreeDemoModel;
 
 /**
@@ -11,6 +15,7 @@ import lthdt.chuong5.logic.TreeDemoModel;
  * @author HOAI NGUYEN
  */
 public class TreeDemo extends javax.swing.JFrame {
+    FileTreeModel tree;
 
     /**
      * Creates new form TreeDemo
@@ -18,8 +23,12 @@ public class TreeDemo extends javax.swing.JFrame {
     public TreeDemo() {
         initComponents();
         //Thay doi du lieu cay thu muc
-        TreeDemoModel model = new TreeDemoModel();
-        this.jTree.setModel(model);
+        //TreeDemoModel model = new TreeDemoModel();
+        //this.jTree.setModel(model);
+        
+        //Hien thi tat ca thu muc tu duong dan
+        tree = new FileTreeModel("E:\\Học tập");
+        this.jTree.setModel(tree);
     }
 
     /**
@@ -40,6 +49,11 @@ public class TreeDemo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Minh họa sử dụng jtree");
 
+        jTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                jTreeValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTree);
 
         jSplitPane1.setLeftComponent(jScrollPane1);
@@ -65,6 +79,17 @@ public class TreeDemo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTreeValueChanged
+        // TODO add your handling code here:
+        DefaultMutableTreeNode node  = (DefaultMutableTreeNode) jTree.getLastSelectedPathComponent();
+        if ( node == null)
+            return;
+        File nodeInfo = (File) node.getUserObject();
+        FileAndDrectoryOperations fo = new FileAndDrectoryOperations();
+            File[] list = fo.getDrectoryContent(nodeInfo.getPath());
+            this.jTextArea.setText(fo.displayContent(list));
+    }//GEN-LAST:event_jTreeValueChanged
 
     /**
      * @param args the command line arguments
