@@ -136,7 +136,7 @@ public class xuatnhap extends javax.swing.JFrame {
         String result = txtHoTen.getText();
         int a =Integer.parseInt(txtSoNguyen.getText());
         double b = Double.parseDouble(txtSoThuc.getText());
-        result ="Ten cua ban: " +  result + "; So nguyen = " + a + "; So thuc = " +b;
+        result ="Ten cua ban: " +  result + "; So nguyen = " + a + "; So thuc = " +b + "\n";
         txtKetQua.append(result);
     }//GEN-LAST:event_butNhapActionPerformed
 
